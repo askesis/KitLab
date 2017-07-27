@@ -3,13 +3,28 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, ButtonToolbar, Grid, Row, Col, Table } from 'react-bootstrap';
 import {data} from './database.js';
-	
+
 var	News	=	React.createClass({  
+	
+	toggleShow: function() {
+			this.setState({
+				show: !this.state.show
+			});
+		},
+
+
+	getInitialState: function() {
+    return {
+      show: false
+    }
+  },
+	
 	render:	function()	{	
 		var data = this.props.data;
+		var abc = this.state.show ? true : false;
 
 			var newsTemplate = data.map(function(item, index) {
-				if (item.value > '1000') {
+				if (abc == true) {
 				return	(						
 					
 						<TableBuilder data={item}/>
@@ -18,71 +33,35 @@ var	News	=	React.createClass({
 				}
 			})
 		
-	//return method render components news
 		return (
-			<tbody>
-				{newsTemplate}
-			</tbody>
+			<div>
+			<Button
+				bsStyle="info"
+				bsSize="large"
+				href="#"
+				target="_blank"
+				onClick={this.toggleShow}
+				>
+				Value over 1000
+			</Button>
+
+			<Table striped bordered condensed hover> 
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>value</th>
+						<th>type</th>
+						<th>date</th>
+					</tr>
+				</thead>
+				<tbody>
+					{newsTemplate}
+				</tbody>
+			</Table>
+			</div>
 		);
 	}
 });	
-
-class Buttons extends Component{
-	
-	sort(something){
-
-	}
-
-	render(){
-		return(	
-			<Grid> 
-			
-    		<Row className="show-grid"> 
-      		<Col xsHidden md={3}> </Col>
-      		<Col xs={6} md={6}> 
-			
-						<ButtonToolbar> 
-							<Button
-								bsStyle="info"
-								bsSize="large"
-								href="#"
-								target="_blank"
-								onclick={}>
-								Value over 1000
-							</Button>
-						
-						<Button
-							bsStyle="info"
-							bsSize="large"
-							href="#"
-							target="_blank">
-							ButtonTwo
-						</Button>
-						
-						<Button
-							bsStyle="info"
-							bsSize="large"
-							href="#"
-							target="_blank">
-							ButtonThree
-							</Button>
-						
-						<Button
-							bsStyle="success"
-							bsSize="large"
-							href="#"
-							target="_blank">
-							ButtonFour
-						</Button>
-				
-						</ButtonToolbar>
-					</Col>
-      		<Col xsHidden md={3}></Col>
-  			</Row>
-			</Grid>
-		)
-	}
-};
 
 class App extends Component {
   render() {
@@ -94,19 +73,7 @@ class App extends Component {
 						<Row>
 							<Col md={2}></Col>
 							<Col md={8}>
-								<Table striped bordered condensed hover> 
-									<thead>
-									<tr>
-										<th>id</th>
-										<th>value</th>
-										<th>type</th>
-										<th>date</th>
-									</tr>
-									</thead>
-																
 									<News	data={data} />
-
-									</Table>
 							</Col>
 							<Col md={2}></Col>
 						</Row>
@@ -136,5 +103,58 @@ var TableBuilder = React.createClass({
 				
 	}
 });
+
+class Buttons extends Component{
+	render(){
+		return(	
+			<Grid> 
+			
+    		<Row className="show-grid"> 
+      		<Col xsHidden md={2}> </Col>
+      		<Col xs={6} md={8}> 
+			
+						<ButtonToolbar> 
+							<Button
+								bsStyle="info"
+								bsSize="large"
+								href="#"
+								target="_blank"
+								>
+								Value over 1000
+							</Button>
+						
+						<Button
+							bsStyle="info"
+							bsSize="large"
+							href="#"
+							target="_blank"
+						>
+							выбрать income
+						</Button>
+						
+						<Button
+							bsStyle="info"
+							bsSize="large"
+							href="#"
+							target="_blank">
+							показать таблицу
+							</Button>
+						
+						<Button
+							bsStyle="success"
+							bsSize="large"
+							href="#"
+							target="_blank">
+							ButtonFour
+						</Button>
+				
+						</ButtonToolbar>
+					</Col>
+      		<Col xsHidden md={2}></Col>
+  			</Row>
+			</Grid>
+		)
+	}
+};
 
 export default App;
