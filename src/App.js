@@ -5,26 +5,15 @@ import { Button, ButtonToolbar, Grid, Row, Col, Table } from 'react-bootstrap';
 import {data} from './database.js';
 
 var	News	=	React.createClass({  
-	
-	toggleShow: function() {
-			this.setState({
-				show: !this.state.show
-			});
-		},
-
-
-	getInitialState: function() {
-    return {
-      show: false
-    }
-  },
-	
 	render:	function()	{	
+
 		var data = this.props.data;
-		var abc = this.state.show ? true : false;
+		var abc = this.props.abc;  
+	
 
 			var newsTemplate = data.map(function(item, index) {
 				if (abc == true) {
+					
 				return	(						
 					
 						<TableBuilder data={item}/>
@@ -34,17 +23,6 @@ var	News	=	React.createClass({
 			})
 		
 		return (
-			<div>
-			<Button
-				bsStyle="info"
-				bsSize="large"
-				href="#"
-				target="_blank"
-				onClick={this.toggleShow}
-				>
-				Value over 1000
-			</Button>
-
 			<Table striped bordered condensed hover> 
 				<thead>
 					<tr>
@@ -58,32 +36,23 @@ var	News	=	React.createClass({
 					{newsTemplate}
 				</tbody>
 			</Table>
-			</div>
 		);
 	}
 });	
 
 class App extends Component {
   render() {
+		
     return (
 			<div className="App">
-					<Buttons/>			
-					<h3>Транзакции</h3> 
-					<Grid> 
-						<Row>
-							<Col md={2}></Col>
-							<Col md={8}>
-									<News	data={data} />
-							</Col>
-							<Col md={2}></Col>
-						</Row>
-					</Grid>	
+				<h3>Транзакции</h3>	
+				<Buttons data={data} />	
 			</div>
     );
   }
 };
 
-//строим таблицу
+
 var TableBuilder = React.createClass({ 
 	render(){
 		var id = this.props.data.id,
@@ -104,8 +73,28 @@ var TableBuilder = React.createClass({
 	}
 });
 
-class Buttons extends Component{
+var Buttons = React.createClass({
+
+		toggleShow: function() {
+			this.setState({
+				show: !this.state.show
+			});
+		},
+
+	getInitialState: function() {
+    return {
+			show: false,
+			filterOne: 0,
+    }
+	},
+	
+
+	
 	render(){
+		var abc = this.state.show;
+		var data = this.props.data;
+	
+
 		return(	
 			<Grid> 
 			
@@ -119,8 +108,9 @@ class Buttons extends Component{
 								bsSize="large"
 								href="#"
 								target="_blank"
+								onClick={ this.toggleShow}
 								>
-								Value over 1000
+								show me table
 							</Button>
 						
 						<Button
@@ -128,8 +118,9 @@ class Buttons extends Component{
 							bsSize="large"
 							href="#"
 							target="_blank"
+							
 						>
-							выбрать income
+							кнпк2
 						</Button>
 						
 						<Button
@@ -137,7 +128,7 @@ class Buttons extends Component{
 							bsSize="large"
 							href="#"
 							target="_blank">
-							показать таблицу
+							кнпк3
 							</Button>
 						
 						<Button
@@ -145,16 +136,19 @@ class Buttons extends Component{
 							bsSize="large"
 							href="#"
 							target="_blank">
-							ButtonFour
+							кнпк4
 						</Button>
 				
 						</ButtonToolbar>
+
+						<News data={data} abc={abc}/>
+
 					</Col>
       		<Col xsHidden md={2}></Col>
   			</Row>
 			</Grid>
 		)
 	}
-};
+});
 
 export default App;
