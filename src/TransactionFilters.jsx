@@ -2,22 +2,18 @@ import React, { Component } from 'react';
 import { Button, ButtonToolbar} from 'react-bootstrap';
 
 class TransactionFiltered extends Component{
- 
-  handleClickOne = () =>{
-    this.props.handleFilterClick('one');
-  }
 
-   handleClickTwo = () =>{
-    this.props.handleFilterClick('two');
+  filter = (filter) =>{
+    this.props.handleFilterClick(filter);
   }
  
   render(){
  
   return(
   <ButtonToolbar>
-    <Button onClick={this.handleClickOne} >one</Button>
-    <Button onClick={this.handleClickTwo} >one</Button>
-   
+    <Button onClick={() => this.filter('asc')} >one</Button>
+    <Button onClick={() => this.filter('desc')} >two</Button>
+    <Button onClick={() => this.filter('over1000')} > three </Button>
   </ButtonToolbar>
   )
   }

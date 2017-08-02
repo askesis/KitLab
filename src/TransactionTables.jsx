@@ -3,7 +3,7 @@ import React, { Component } from 'react';
   
 const TransactionTables = React.createClass({ 
  render: function(){
-  const template = this.props.data.map(function(item, index){
+  const template = this.props.initialData.map(function(item, index){
   const id = item.id,
     type = item.type,
     value = item.value,
