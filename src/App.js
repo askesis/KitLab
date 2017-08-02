@@ -4,7 +4,7 @@ import './App.css';
 import {Grid, Row, Col} from 'react-bootstrap';
 import {data} from './database.js';
 
-import TransactionFiltered from "./TransactionFilters";
+import TransactionFilters from "./TransactionFilters";
 import TransactionTables from "./TransactionTables";
 
 class App extends Component {
@@ -12,20 +12,24 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-			selestedFilters:[],
+			selectedFilters:[],
 			inTables: []
 		};
 	}
 
-handleFilterClick(filter){
+handleFilterClick = (filter) => {//функция которая меняет состояние. Ее нужно вызвать чтобы поменять
+ //состояние  MyCallBack
 	this.setState({
-		selectedFilters:{...this.state.selestedFilters, filter}
-	});
+    selectedFilters:{...this.state.selectedFilters, filter}
+  });
+ console.log(this.props.selectedFilters);
 }
+
+ 
 	filterTransactions(data){
-		//filter this.state.selectedFilters
+//some code here
 		return data;
-	}
+	} 
 
 	render(){
 		const inTables = this.filterTransactions(data);
@@ -34,8 +38,8 @@ handleFilterClick(filter){
 				<Row>
 					<Col md={3}></Col>
 					<Col md={6}>
-						<TransactionFiltered onFilterClick={this.handleFilterClick}/>
-						<TransactionTables data={data}/>
+						<TransactionFilters handleFilterClick={ this.handleFilterClick}/>
+						<TransactionTables data={inTables}/>
 					</Col>
 					<Col md={6}></Col>
 				</Row>

@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
-import TransactionTables from "./TransactionTables.jsx";
-import { Button, ButtonToolbar, Grid, Row, Col } from 'react-bootstrap';
+import { Button, ButtonToolbar} from 'react-bootstrap';
 
-const TransactionFiltered = React.createClass({
-  render: function(){
-    return(
-    <ButtonToolbar>
-    <Button>one</Button>
-        <Button>two</Button>
-      </ButtonToolbar>
-      
-    )
+class TransactionFiltered extends Component{
+ 
+  handleClickOne = () =>{
+    this.props.handleFilterClick('one');
   }
-})
+
+   handleClickTwo = () =>{
+    this.props.handleFilterClick('two');
+  }
+ 
+  render(){
+ 
+  return(
+  <ButtonToolbar>
+    <Button onClick={this.handleClickOne} >one</Button>
+    <Button onClick={this.handleClickTwo} >one</Button>
+   
+  </ButtonToolbar>
+  )
+  }
+}
 
 export default TransactionFiltered;
