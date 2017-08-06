@@ -21,38 +21,36 @@ handleFilterClick = (filter) => {//функция которая меняет с
 	this.setState({
     selectedFilters:[...this.state.selectedFilters, filter]
   });
-
 }
 
- 
-	filterTransactions(initialData){
-    let template=[];
-    const filter = this.state.selectedFilters;
-    const filter1 = filter.map(function(item, index){
-      if (item == 'over1000'){
-        let template = initialData.map(function(item, index){
-          const value = initialData.value;
-          if (value > 1000){
-            return(
-              item
-            )
-          }
-        })
-      }
+finishedData(data){
+  this.setState({
+    inTables:[...this.state.inTables, data]
+  });
+  console.log(this.state.inTables);
+}
 
-    })
-    return template;
-	} 
+
+filterTransactions(initialData){
+  initialData.forEach(function(item, initialData){
+     this.finishedData(item)
+  })
+   //записывает в состояние
+} 
+
+componentWillMount(){
+  this.filterTransactions(initialData);
+}
 
 	render(){
-		const inTables = this.filterTransactions(initialData);
+		const inTables = this.state.inTables;
 		return(
 			<Grid>
 				<Row>
 					<Col md={3}></Col>
 					<Col md={6}>
 						<TransactionFilters handleFilterClick={ this.handleFilterClick}/>
-						<TransactionTables initialData={inTables}/>
+						<TransactionTables finishedData={inTables}/>
 					</Col>
 					<Col md={6}></Col>
 				</Row>
