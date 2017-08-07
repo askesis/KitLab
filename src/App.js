@@ -12,45 +12,62 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-			selectedFilters: [],
-			inTables: []
+			selectedFilters: {},
 		};
 	}
 
-handleFilterClick = (filter) => {//функция которая меняет состояние
-	this.setState({
-    selectedFilters:[...this.state.selectedFilters, filter]
-  });
-}
-
-finishedData(data){
-  this.setState({
-    inTables:[...this.state.inTables, data]
-  });
-  console.log(this.state.inTables);
-}
+  handleFilterClick = filter => {// проверку сделать
+    this.state.selectedFilters[filter] ? this.setState({ selectedFilters:{...this.state.selectedFilters, [filter]:false} }) : this.setState({ selectedFilters:{...this.state.selectedFilters, [filter]:true} })
+  }
 
 
-filterTransactions(initialData){
-  initialData.forEach(function(item, initialData){
-     this.finishedData(item)
-  })
-   //записывает в состояние
-} 
+  filterTransactions(data, filters){
+    let filteredData = data;
+    
+    if (this.state.selectedFilters['over1000']){
+      filteredData = filteredData.filter( (item, index) => {
+        return item.value > 1000;
+      })
+    }
 
-componentWillMount(){
-  this.filterTransactions(initialData);
-}
+    if (this.state.selectedFilters['consumption']){
+      filteredData = filteredData.filter( (item, index) => {
+        return item.type == 'consumption';
+      })
+    }
+
+    if (this.state.selectedFilters['income']){
+      filteredData = filteredData.filter( (item, index) => {
+        return item.type === 'income';
+      })
+    }
+  
+    if (this.state.selectedFilters['perMonth']){
+      filteredData = filteredData.filter( (item, index) => {
+      return Date.now() - Date.parse(item.date) < 2592000000 ;
+      })
+    }
+    
+    return filteredData;
+  
+  } 
 
 	render(){
-		const inTables = this.state.inTables;
 		return(
 			<Grid>
 				<Row>
 					<Col md={3}></Col>
-					<Col md={6}>
-						<TransactionFilters handleFilterClick={ this.handleFilterClick}/>
-						<TransactionTables finishedData={inTables}/>
+          <Col md={6}>
+          
+            <TransactionFilters 
+              handleFilterClick={this.handleFilterClick} 
+              selectedFilters={this.state.selectedFilters}
+            />
+
+            <TransactionTables 
+              finishedData={this.filterTransactions(initialData, [this.state.selectedFilters])}
+            />
+
 					</Col>
 					<Col md={6}></Col>
 				</Row>
