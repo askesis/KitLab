@@ -6,9 +6,13 @@ import {initialData} from './database.js';
 
 import TransactionFilters from "./TransactionFilters";
 import TransactionTables from "./TransactionTables";
+import FormAdd from './FormAdd.jsx';
 
-// using ES6 modules 
-import { Router, Route, Switch } from 'react-router'
+import {
+  BrowserRouter ,
+  Route,
+  Link
+} from 'react-router-dom';
 
 class App extends Component {
 	constructor(props) { //это вот состояния
@@ -25,8 +29,6 @@ class App extends Component {
     )
   }
 
-
-  //  this.state.selectedFilters[filter] ? this.setState({ selectedFilters:{...this.state.selectedFilters, [filter]:false} }) : this.setState({ selectedFilters:{...this.state.selectedFilters, [filter]:true} })
 
   filterTransactions(data, filters){
     let filteredData = data;
@@ -62,31 +64,35 @@ class App extends Component {
 
 	render(){
         // using CommonJS modules 
-    var Router = require('react-router').Router
-    var Route = require('react-router').Route
-    var Switch = require('react-router').Switch
+    // var Router = require('react-router').Router
+    // var Route = require('react-router').Route
+    // var Switch = require('react-router').Switch
 		return(
-			<Grid>
-				<Row>
-					<Col md={3}></Col>
-          <Col md={6}>
-          
-            <TransactionFilters 
-              handleFilterClick={this.handleFilterClick} 
-              selectedFilters={this.state.selectedFilters}
-            />
+     
+        <Grid>
+          <Row>
+            <Col md={3}>
+                <Link to='/form_add'>add </Link>
+            </Col>
+            <Col md={6}>
+            
+              <TransactionFilters 
+                handleFilterClick={this.handleFilterClick} 
+                selectedFilters={this.state.selectedFilters}
+              />
 
-            <TransactionTables 
-              finishedData={this.filterTransactions(initialData, [this.state.selectedFilters])}
-            />
+              <TransactionTables 
+                finishedData={this.filterTransactions(initialData, [this.state.selectedFilters])}
+              />
 
-					</Col>
-					<Col md={6}></Col>
-				</Row>
-			</Grid>
-				
+            </Col>
+            <Col md={6}></Col>
+          </Row>
+        </Grid>
+	
 		);
-	}
+  }
+  
 }
 
 export default App;

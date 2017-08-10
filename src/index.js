@@ -2,16 +2,20 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+import { BrowserRouter, Route } from 'react-router-dom'
 
-//import 'bootstrap/dist/css/bootstrap-theme.css';
-// Put any other imports below so that CSS from your
-// components takes precedence over default styles.
+import FormAdd from './FormAdd.jsx';
+import App from './App.jsx';
 
 ReactDOM.render(
-	<App />, 
+  <BrowserRouter basename="/" >
+    <div>
+     <Route exact path="/" component={App}/>
+     <Route path="/form_add" component={FormAdd}/>
+    </div>
+  </BrowserRouter>,
 	document.getElementById('root')
 );
 
