@@ -7,6 +7,9 @@ import {initialData} from './database.js';
 import TransactionFilters from "./TransactionFilters";
 import TransactionTables from "./TransactionTables";
 
+// using ES6 modules 
+import { Router, Route, Switch } from 'react-router'
+
 class App extends Component {
 	constructor(props) { //это вот состояния
 		super(props);
@@ -17,32 +20,37 @@ class App extends Component {
 	}
 
   handleFilterClick = filter => {// проверку сделать
-    this.state.selectedFilters[filter] ? this.setState({ selectedFilters:{...this.state.selectedFilters, [filter]:false} }) : this.setState({ selectedFilters:{...this.state.selectedFilters, [filter]:true} })
+    this.setState({
+      selectedFilters: {...this.state.selectedFilters, [filter]: !this.state.selectedFilters[filter]  }}
+    )
   }
 
 
+  //  this.state.selectedFilters[filter] ? this.setState({ selectedFilters:{...this.state.selectedFilters, [filter]:false} }) : this.setState({ selectedFilters:{...this.state.selectedFilters, [filter]:true} })
+
   filterTransactions(data, filters){
     let filteredData = data;
-    
-    if (this.state.selectedFilters['over1000']){
+    const {selectedFilters} = this.state;
+
+    if (selectedFilters['over1000']){
       filteredData = filteredData.filter( (item, index) => {
         return item.value > 1000;
       })
     }
 
-    if (this.state.selectedFilters['consumption']){
+    if (selectedFilters['consumption']){
       filteredData = filteredData.filter( (item, index) => {
-        return item.type == 'consumption';
+        return item.type === 'consumption';
       })
     }
 
-    if (this.state.selectedFilters['income']){
+    if (selectedFilters['income']){
       filteredData = filteredData.filter( (item, index) => {
         return item.type === 'income';
       })
     }
   
-    if (this.state.selectedFilters['perMonth']){
+    if (selectedFilters['perMonth']){
       filteredData = filteredData.filter( (item, index) => {
       return Date.now() - Date.parse(item.date) < 2592000000 ;
       })
@@ -53,6 +61,10 @@ class App extends Component {
   } 
 
 	render(){
+        // using CommonJS modules 
+    var Router = require('react-router').Router
+    var Route = require('react-router').Route
+    var Switch = require('react-router').Switch
 		return(
 			<Grid>
 				<Row>

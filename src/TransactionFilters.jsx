@@ -8,10 +8,10 @@ class TransactionFiltered extends Component{
   }
  
   render(){
-    const btnConsumption = this.props.selectedFilters['consumption'] ? 'primary' : '';
-    const btnIncome = this.props.selectedFilters['income'] ? 'primary' : '';
-    const btnPerMonth = this.props.selectedFilters['perMonth'] ? 'primary' : '';
-    const btnOver1000 = this.props.selectedFilters['over1000'] ? 'primary' : '';
+    const btnConsumption = this.props.selectedFilters['consumption'] ? 'primary' : 'default';
+    const btnIncome = this.props.selectedFilters['income'] ? 'primary' : 'default';
+    const btnPerMonth = this.props.selectedFilters['perMonth'] ? 'primary' : 'default';
+    const btnOver1000 = this.props.selectedFilters['over1000'] ? 'primary' : 'default';
   
     return(
       <ButtonToolbar>
