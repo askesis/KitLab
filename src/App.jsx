@@ -21,17 +21,12 @@ class App extends Component {
   }
   
   componentDidMount() {
-    // axios.get(`http://localhost:3001/transactions`)
-    //   .then(res => {
-    //     const initialData = res.data.data.children.map(obj => obj.data);
-    //     this.setState({ initialData });
-    //   });
-
     axios.get(`http://localhost:3000/transactions`)
       .then( (response) => {
         const data = response.data.map( (item,index) => {
           return item
         })
+        
         this.setState({
           initialData: data
         }) 
@@ -83,12 +78,7 @@ class App extends Component {
   } 
 
 	render(){
-        // using CommonJS modules 
-    // var Router = require('react-router').Router
-    // var Route = require('react-router').Route
-    // var Switch = require('react-router').Switch
 		return(
-     
         <Grid>
           <Row>
             <Col md={3}>

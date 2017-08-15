@@ -15,22 +15,9 @@ class FormAdd extends Component {
 		};
   }
 
-  // getValidationState() {
-  //   const length = this.state.value.length;
-  //   if (length > 10) return 'success';
-  //   else if (length > 5) return 'warning';
-  //   else if (length > 0) return 'error';
-  // }
-
- 
-
-  getId(){
-    let currentId  
-  }
-
   handleInputSubmit =(e)=>{
     e.preventDefault();
-    console.log('1');
+
     axios.post(`http://localhost:3000/transactions`, this.state)
 
     .then(function (response) {
@@ -51,9 +38,7 @@ class FormAdd extends Component {
   }
 
   render(){
-
-    return(
-      
+    return(  
       <Grid>
         <Row>
           <Col md={3}>
@@ -66,11 +51,11 @@ class FormAdd extends Component {
             <form onSubmit={this.handleInputSubmit.bind(this)}>
              
               <input type="text" name="value" value={this.state.value} onChange={this.handleInputChange.bind(this)}/>
-              <br/>
+    
               <input type="text" name="type" value={this.state.type} onChange={this.handleInputChange.bind(this)}/>
-              <br/>
+  
               <input type="text" name="date" value={this.state.date} onChange={this.handleInputChange.bind(this)}/>
-              <br/>
+           
               <input type="submit"/>
             </form>
           </Col>
@@ -81,7 +66,6 @@ class FormAdd extends Component {
         </Row>
       </Grid>
     )
-
   }
 }
 export default FormAdd;
