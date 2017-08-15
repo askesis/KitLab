@@ -1,27 +1,47 @@
 import React, { Component } from 'react';
 import './App.css';
 // import 'bootstrap/dist/css/bootstrap.css';
-import {Grid, Row, Col} from 'react-bootstrap';
-import {initialData} from './database.js';
+import { Button, Grid, Row, Col} from 'react-bootstrap';
 
+import axios from 'axios';
 import TransactionFilters from "./TransactionFilters";
 import TransactionTables from "./TransactionTables";
-import FormAdd from './FormAdd.jsx';
 
-import {
-  BrowserRouter ,
-  Route,
-  Link
-} from 'react-router-dom';
+
+import { Link } from 'react-router-dom';
 
 class App extends Component {
 	constructor(props) { //это вот состояния
 		super(props);
 
 		this.state = {
-			selectedFilters: {},
+      initialData:[],
+			selectedFilters: {}
 		};
-	}
+  }
+  
+  componentDidMount() {
+    // axios.get(`http://localhost:3001/transactions`)
+    //   .then(res => {
+    //     const initialData = res.data.data.children.map(obj => obj.data);
+    //     this.setState({ initialData });
+    //   });
+
+    axios.get(`http://localhost:3000/transactions`)
+      .then( (response) => {
+        const data = response.data.map( (item,index) => {
+          return item
+        })
+        this.setState({
+          initialData: data
+        }) 
+      })
+
+      .catch(function (error) {
+        console.log(error);
+      });
+    
+  }
 
   handleFilterClick = filter => {// проверку сделать
     this.setState({
@@ -72,7 +92,9 @@ class App extends Component {
         <Grid>
           <Row>
             <Col md={3}>
-                <Link to='/form_add'>add </Link>
+               <Button>
+                  <Link to='/form_add'>add transaction</Link>
+               </Button>
             </Col>
             <Col md={6}>
             
@@ -82,7 +104,7 @@ class App extends Component {
               />
 
               <TransactionTables 
-                finishedData={this.filterTransactions(initialData, [this.state.selectedFilters])}
+                finishedData={this.filterTransactions(this.state.initialData, [this.state.selectedFilters])}
               />
 
             </Col>

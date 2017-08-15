@@ -1,84 +1,81 @@
 import React, { Component } from 'react';
-import {Grid, Row, Button, Col, FormControl, ControlLabel, HelpBlock, FormGroup, Radio} from 'react-bootstrap';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import {Grid, Row, Button, Col,} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class FormAdd extends Component {
   constructor(props) { //это вот состояния
 	  super(props);
-
+ 
 		this.state = {
-			value: '',
+      id: '',
+      value:'',
+      type:'',
+      date:''
 		};
   }
 
-  getValidationState() {
-    const length = this.state.value.length;
-    if (length > 10) return 'success';
-    else if (length > 5) return 'warning';
-    else if (length > 0) return 'error';
+  // getValidationState() {
+  //   const length = this.state.value.length;
+  //   if (length > 10) return 'success';
+  //   else if (length > 5) return 'warning';
+  //   else if (length > 0) return 'error';
+  // }
+
+ 
+
+  getId(){
+    let currentId  
   }
 
-  handleChange(e) {
-      this.setState({
-        value: e.target.value 
-      });
+  handleInputSubmit =(e)=>{
+    e.preventDefault();
+    console.log('1');
+    axios.post(`http://localhost:3000/transactions`, this.state)
+
+    .then(function (response) {
+      alert('the id of this transactions ' + response.data.id)
+    })
+
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  handleInputChange(e){
+    
+    this.setState({
+      [e.target.name]:e.target.value,
+    })
+    console.log(this.state) 
   }
 
   render(){
 
     return(
+      
       <Grid>
         <Row>
           <Col md={3}>
-            <Link to='/'>App </Link>
+           <Button>
+              <Link to='/'>Table</Link>
+           </Button>
           </Col>
 
           <Col md={6}>
-            <form>
-              <FormGroup
-                controlId="formBasicText"
-                validationState={this.getValidationState()}
-              >
-                <ControlLabel>something</ControlLabel>
-
-                <FormControl
-                  type="text"
-                  value={this.state.value}
-                  placeholder="Enter value"
-                  onChange={this.handleChange.bind(this)}
-                />
-                <FormControl.Feedback />
-                </FormGroup>
-                <FormGroup>
-                <p></p>
-                <FormControl
-                  type="text"
-                  
-                  placeholder="Enter text"
-                  
-                />
-                </FormGroup>
-
-                <FormGroup>
-                <p></p>
-                <Radio name="radioGroup" inline>
-                  consumption
-                </Radio>
-          
-                <Radio name="radioGroup" inline>
-                  income
-                </Radio>
-                </FormGroup>
-                
-                <HelpBlock>something</HelpBlock>
+            <form onSubmit={this.handleInputSubmit.bind(this)}>
              
+              <input type="text" name="value" value={this.state.value} onChange={this.handleInputChange.bind(this)}/>
+              <br/>
+              <input type="text" name="type" value={this.state.type} onChange={this.handleInputChange.bind(this)}/>
+              <br/>
+              <input type="text" name="date" value={this.state.date} onChange={this.handleInputChange.bind(this)}/>
+              <br/>
+              <input type="submit"/>
             </form>
           </Col>
 
           <Col md={3}>
-            <Button>
-              send
-            </Button>
           </Col>
 
         </Row>
