@@ -21,7 +21,8 @@ class App extends Component {
   }
   
   componentDidMount() {
-    axios.get(`http://localhost:3004/transactions`)
+    const address = `http://localhost:3004/transactions`;
+    axios.get(address)
       .then( (response) => {
         const data = response.data.map( (item,index) => {
           return item

@@ -17,8 +17,8 @@ class FormAdd extends Component {
 
   handleInputSubmit =(e)=>{
     e.preventDefault();
-
-    axios.post(`http://localhost:3004/transactions`, this.state)
+    const address = `http://localhost:3004/transactions`;
+    axios.post(address, this.state)
 
     .then(function (response) {
       alert('the id of this transactions ' + response.data.id)
