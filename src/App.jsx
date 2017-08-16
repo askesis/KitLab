@@ -8,7 +8,7 @@ import TransactionFilters from "./TransactionFilters";
 import TransactionTables from "./TransactionTables";
 
 
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
 class App extends Component {
 	constructor(props) { //это вот состояния
@@ -21,7 +21,7 @@ class App extends Component {
   }
   
   componentDidMount() {
-    axios.get(`http://localhost:3000/transactions`)
+    axios.get(`http://localhost:3004/transactions`)
       .then( (response) => {
         const data = response.data.map( (item,index) => {
           return item

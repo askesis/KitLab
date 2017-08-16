@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Grid, Row, Button, Col,} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 class FormAdd extends Component {
@@ -18,7 +18,7 @@ class FormAdd extends Component {
   handleInputSubmit =(e)=>{
     e.preventDefault();
 
-    axios.post(`http://localhost:3000/transactions`, this.state)
+    axios.post(`http://localhost:3004/transactions`, this.state)
 
     .then(function (response) {
       alert('the id of this transactions ' + response.data.id)
