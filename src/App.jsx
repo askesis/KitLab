@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-// import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Grid, Row, Col} from 'react-bootstrap';
 
 import axios from 'axios';
 import TransactionFilters from "./TransactionFilters";
 import TransactionTables from "./TransactionTables";
-
+import {serverAddress} from './config';
 
 import { Route, Link } from 'react-router-dom';
 
 class App extends Component {
-	constructor(props) { //это вот состояния
+	constructor(props) {
 		super(props);
 
 		this.state = {
@@ -21,25 +20,23 @@ class App extends Component {
   }
   
   componentDidMount() {
-    const address = `http://localhost:3004/transactions`;
-    axios.get(address)
-      .then( (response) => {
-        const data = response.data.map( (item,index) => {
+    
+    axios.get(serverAddress)
+      .then( response => {
+        const data = response.data.map( (item, index) => {
           return item
         })
-        
         this.setState({
           initialData: data
         }) 
       })
-
-      .catch(function (error) {
+      .catch( error => {
         console.log(error);
       });
     
   }
 
-  handleFilterClick = filter => {// проверку сделать
+  handleFilterClick = filter => {
     this.setState({
       selectedFilters: {...this.state.selectedFilters, [filter]: !this.state.selectedFilters[filter]  }}
     )
@@ -48,27 +45,26 @@ class App extends Component {
 
   filterTransactions(data, filters){
     let filteredData = data;
-    const {selectedFilters} = this.state;
 
-    if (selectedFilters['over1000']){
+    if (filters.over1000){
       filteredData = filteredData.filter( (item, index) => {
         return item.value > 1000;
       })
     }
 
-    if (selectedFilters['consumption']){
+    if (filters.consumption){
       filteredData = filteredData.filter( (item, index) => {
         return item.type === 'consumption';
       })
     }
 
-    if (selectedFilters['income']){
+    if (filters.income){
       filteredData = filteredData.filter( (item, index) => {
         return item.type === 'income';
       })
     }
   
-    if (selectedFilters['perMonth']){
+    if (filters.perMonth){
       filteredData = filteredData.filter( (item, index) => {
       return Date.now() - Date.parse(item.date) < 2592000000 ;
       })
@@ -83,9 +79,9 @@ class App extends Component {
         <Grid>
           <Row>
             <Col md={3}>
-               <Button>
-                  <Link to='/form_add'>add transaction</Link>
-               </Button>
+               
+                  <Link to='/form_add'><Button>add transaction</Button></Link>
+              
             </Col>
             <Col md={6}>
             
@@ -95,7 +91,7 @@ class App extends Component {
               />
 
               <TransactionTables 
-                finishedData={this.filterTransactions(this.state.initialData, [this.state.selectedFilters])}
+                finishedData={this.filterTransactions(this.state.initialData, this.state.selectedFilters)}
               />
 
             </Col>

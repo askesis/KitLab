@@ -3,15 +3,16 @@ import { Button, ButtonToolbar} from 'react-bootstrap';
 
 class TransactionFiltered extends Component{
 
-  filter = (filter) =>{
+  filter = filter =>{
     this.props.handleFilterClick(filter);
   }
  
   render(){
-    const btnConsumption = this.props.selectedFilters['consumption'] ? 'primary' : 'default';
-    const btnIncome = this.props.selectedFilters['income'] ? 'primary' : 'default';
-    const btnPerMonth = this.props.selectedFilters['perMonth'] ? 'primary' : 'default';
-    const btnOver1000 = this.props.selectedFilters['over1000'] ? 'primary' : 'default';
+    const { selectedFilters } = this.props;
+    const btnConsumption = selectedFilters['consumption'] ? 'primary' : 'default';
+    const btnIncome = selectedFilters['income'] ? 'primary' : 'default';
+    const btnPerMonth = selectedFilters['perMonth'] ? 'primary' : 'default';
+    const btnOver1000 = selectedFilters['over1000'] ? 'primary' : 'default';
   
     return(
       <ButtonToolbar>

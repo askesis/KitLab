@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Grid, Row, Button, Col,} from 'react-bootstrap';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import {serverAddress} from './config.js';
+
 
 class FormAdd extends Component {
   constructor(props) { //это вот состояния
@@ -15,26 +17,27 @@ class FormAdd extends Component {
 		};
   }
 
-  handleInputSubmit =(e)=>{
+  handleInputSubmit = e =>{
     e.preventDefault();
-    const address = `http://localhost:3004/transactions`;
-    axios.post(address, this.state)
+    
+    axios.post(serverAddress, this.state)
 
-    .then(function (response) {
-      alert('the id of this transactions ' + response.data.id)
+    .then( response => {
+      alert('the id of this transactions ' + response.data.id);
     })
-
-    .catch(function (error) {
+    .catch( error => {
       console.log(error);
     });
+
+    this.setState({
+        value: '', type :'', date :'' 
+      })
   }
 
-  handleInputChange(e){
-    
+  handleInputChange(e){  
     this.setState({
       [e.target.name]:e.target.value,
     })
-    console.log(this.state) 
   }
 
   render(){
@@ -42,19 +45,17 @@ class FormAdd extends Component {
       <Grid>
         <Row>
           <Col md={3}>
-           <Button>
-              <Link to='/'>Table</Link>
-           </Button>
+              <Link to='/'><Button>Table</Button></Link>
           </Col>
 
           <Col md={6}>
-            <form onSubmit={this.handleInputSubmit.bind(this)}>
+            <form onSubmit={this.handleInputSubmit}>
              
-              <input type="text" name="value" value={this.state.value} onChange={this.handleInputChange.bind(this)}/>
+              <input type="text" name="value" placeholder="value" value={this.state.value} onChange={this.handleInputChange.bind(this)}/>
     
-              <input type="text" name="type" value={this.state.type} onChange={this.handleInputChange.bind(this)}/>
+              <input type="text" name="type" placeholder="type" value={this.state.type} onChange={this.handleInputChange.bind(this)}/>
   
-              <input type="text" name="date" value={this.state.date} onChange={this.handleInputChange.bind(this)}/>
+              <input type="text" name="date" placeholder="data" value={this.state.date} onChange={this.handleInputChange.bind(this)}/>
            
               <input type="submit"/>
             </form>
