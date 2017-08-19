@@ -30,7 +30,10 @@ class FormAdd extends Component {
     });
 
     this.setState({
-        value: '', type :'', date :'', counterpartId:'',
+        value: '', 
+        type :'', 
+        date :'', 
+        counterpartId:'',
       })
   }
 

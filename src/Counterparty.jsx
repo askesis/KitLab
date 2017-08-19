@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Table, Grid, Row, Col} from 'react-bootstrap'
 import axios from 'axios';
 import {counterpartyAddress} from './config';
-
+import FormAddCounterparty from './FormAddCounterparty';
 
 class CounterpartyTables extends Component{ 
   constructor(props) {
@@ -50,6 +50,7 @@ componentDidMount() {
         <Row>
           <Col xsHidden md={2} ></Col>
           <Col md={8}> 
+          <FormAddCounterparty />
             <Table striped>
               <thead>
                 <tr>

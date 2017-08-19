@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
+import { BrowserRouter,  Route } from 'react-router-dom'
 import './App.css';
 import TablePlusFilters from './TablePlusFilters';
 import FormAdd from './FormAdd';
-import { Button, Panel, ButtonToolbar } from 'react-bootstrap';
+import { Panel, ButtonToolbar } from 'react-bootstrap';
 import Menu from './Menu';
 import CounterpartyTables from './Counterparty';
 
@@ -15,9 +11,8 @@ import CounterpartyTables from './Counterparty';
 class App extends Component{
   render(){
     return(
-      <Router>
+      <BrowserRouter>
         <div>
-       
             <ButtonToolbar>
               <Panel className={"Menu"}>
                 <Menu activeOnlyWhenExact={true} to="/" label="TablePlusFilters"/>
@@ -30,7 +25,7 @@ class App extends Component{
           <Route path="/form_add" component={FormAdd}/>
           <Route path="/counterparty" component={CounterpartyTables}/>
         </div>
-      </Router>
+      </BrowserRouter>
     )
   }
  
