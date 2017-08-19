@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import {Grid, Row, Button, Col, Panel} from 'react-bootstrap';
-import { Route, Link } from 'react-router-dom';
+import {Grid, Row, Col, Panel} from 'react-bootstrap';
+
 import axios from 'axios';
-import {serverAddress} from './config.js';
-import Menu from './menu.jsx'
+import {transactionAddress} from './config.js';
 
 class FormAdd extends Component {
   constructor(props) { //это вот состояния
@@ -13,14 +12,15 @@ class FormAdd extends Component {
       id: '',
       value:'',
       type:'',
-      date:''
+      date:'',
+      counterpartId:'',
 		};
   }
 
   handleInputSubmit = e =>{
     e.preventDefault();
     
-    axios.post(serverAddress, this.state)
+    axios.post(transactionAddress, this.state)
 
     .then( response => {
       alert('the id of this transactions ' + response.data.id);
@@ -30,7 +30,7 @@ class FormAdd extends Component {
     });
 
     this.setState({
-        value: '', type :'', date :'' 
+        value: '', type :'', date :'', counterpartId:'',
       })
   }
 
@@ -44,9 +44,7 @@ class FormAdd extends Component {
     return(  
       <Grid>
         <Row>
-          <Col md={2}>
-             <Menu/>
-          </Col>
+          <Col md={2}></Col>
 
           <Col md={8}>
             <form onSubmit={this.handleInputSubmit}>
@@ -56,7 +54,9 @@ class FormAdd extends Component {
               <input type="text" name="type" placeholder="type" value={this.state.type} onChange={this.handleInputChange.bind(this)}/>
   
               <input type="text" name="date" placeholder="data" value={this.state.date} onChange={this.handleInputChange.bind(this)}/>
-           </Panel>
+
+               <input type="text" name="counterpartId" placeholder="counterpartID" value={this.state.counterpartId} onChange={this.handleInputChange.bind(this)}/>
+            </Panel>
               <input type="submit"/>
             </form>
           </Col>

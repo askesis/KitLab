@@ -1,109 +1,39 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 import './App.css';
-import { Button, Grid, Row, Col} from 'react-bootstrap';
+import TablePlusFilters from './TablePlusFilters';
+import FormAdd from './FormAdd';
+import { Button, Panel, ButtonToolbar } from 'react-bootstrap';
+import Menu from './Menu';
+import CounterpartyTables from './Counterparty';
 
-import axios from 'axios';
-import TransactionFilters from "./TransactionFilters";
-import TransactionTables from "./TransactionTables";
-import {serverAddress} from './config';
-import Menu from './menu.jsx'
 
-import { Route, Link } from 'react-router-dom';
+class App extends Component{
+  render(){
+    return(
+      <Router>
+        <div>
+       
+            <ButtonToolbar>
+              <Panel className={"Menu"}>
+                <Menu activeOnlyWhenExact={true} to="/" label="TablePlusFilters"/>
+                <Menu to="/form_add" label="FormAdd"/>
+                <Menu to="/counterparty" label="Counterparty"/>
+              </Panel>
+            </ButtonToolbar>                                            {/* button show here*/}
 
-class App extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-      initialData:[],
-			selectedFilters: {}
-		};
-  }
-  
-  componentDidMount() {
-    
-    axios.get(serverAddress)
-      .then( response => {
-        const data = response.data.map( (item, index) => {
-          return item
-        })
-        this.setState({
-          initialData: data
-        }) 
-      })
-      .catch( error => {
-        console.log(error);
-      });
-    
-  }
-
-  handleFilterClick = filter => {
-    this.setState({
-      selectedFilters: {...this.state.selectedFilters, [filter]: !this.state.selectedFilters[filter]  }}
+          <Route exact path="/" component={TablePlusFilters}/>
+          <Route path="/form_add" component={FormAdd}/>
+          <Route path="/counterparty" component={CounterpartyTables}/>
+        </div>
+      </Router>
     )
   }
-
-
-  filterTransactions(data, filters){
-    let filteredData = data;
-
-    if (filters.over1000){
-      filteredData = filteredData.filter( (item, index) => {
-        return item.value > 1000;
-      })
-    }
-
-    if (filters.consumption){
-      filteredData = filteredData.filter( (item, index) => {
-        return item.type === 'consumption';
-      })
-    }
-
-    if (filters.income){
-      filteredData = filteredData.filter( (item, index) => {
-        return item.type === 'income';
-      })
-    }
-  
-    if (filters.perMonth){
-      filteredData = filteredData.filter( (item, index) => {
-      return Date.now() - Date.parse(item.date) < 2592000000 ;
-      })
-    }
-    
-    return filteredData;
-  
-  } 
-
-	render(){
-		return(
-        <Grid>
-          <Row>
-            <Col md={2}>
-               
-                 <Menu />
-              
-            </Col>
-            <Col md={8}>
-            
-              <TransactionFilters 
-                handleFilterClick={this.handleFilterClick} 
-                selectedFilters={this.state.selectedFilters}
-              />
-
-              <TransactionTables 
-                finishedData={this.filterTransactions(this.state.initialData, this.state.selectedFilters)}
-              />
-
-            </Col>
-            <Col xsHidden md={2}></Col>
-          </Row>
-        </Grid>
-	
-		);
-  }
-  
+ 
 }
 
 export default App;
-

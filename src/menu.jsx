@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
-import { Panel, Button } from 'react-bootstrap';
+import {  Link, Route } from 'react-router-dom';
+import {  Button } from 'react-bootstrap';
 
-
-class Menu extends Component{
-
-  render(){
-    return(
-      <Panel>
-        <NavLink to='/form_add'><Button > add transaction </Button></NavLink>
-        <NavLink to='/'><Button > table </Button></NavLink>
-      </Panel>
-    )
-  }
-}
+const Menu = ({ label, to, activeOnlyWhenExact }) => (
+  <Route path={to} exact={activeOnlyWhenExact} children={({ match }) => (
+    <div className={match ? 'active' : ''}> 
+      <Link to={to}> <Button bsStyle={match ? 'info' : 'default' }> {label} </Button></Link>        {/* and here they are created*/}
+    </div>                                                                                            
+  )}
+  />
+)
 
 export default Menu;
