@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Table} from 'react-bootstrap'
   
 class TransactionTables extends Component{ 
   render(){
@@ -20,11 +20,19 @@ class TransactionTables extends Component{
     
   
     return(
-      <table>
+      <Table striped>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>type</th>
+            <th>value</th>
+            <th>date</th>
+          </tr>
+        </thead>
         <tbody>
         {template}
         </tbody>
-      </table>
+      </Table>
     )
   }
 }

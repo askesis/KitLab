@@ -6,6 +6,7 @@ import axios from 'axios';
 import TransactionFilters from "./TransactionFilters";
 import TransactionTables from "./TransactionTables";
 import {serverAddress} from './config';
+import Menu from './menu.jsx'
 
 import { Route, Link } from 'react-router-dom';
 
@@ -78,12 +79,12 @@ class App extends Component {
 		return(
         <Grid>
           <Row>
-            <Col md={3}>
+            <Col md={2}>
                
-                  <Link to='/form_add'><Button>add transaction</Button></Link>
+                 <Menu />
               
             </Col>
-            <Col md={6}>
+            <Col md={8}>
             
               <TransactionFilters 
                 handleFilterClick={this.handleFilterClick} 
@@ -95,7 +96,7 @@ class App extends Component {
               />
 
             </Col>
-            <Col md={6}></Col>
+            <Col xsHidden md={2}></Col>
           </Row>
         </Grid>
 	
