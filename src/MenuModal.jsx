@@ -2,15 +2,20 @@ import React, {Component} from 'react';
 import {  Button, Modal } from 'react-bootstrap';
 import FormAddCounterparty from './FormAddCounterparty';
 import FormAdd from './FormAdd';
-class MenuModal extends Component{
-  constructor(props){
-    super(props);
+import { connect } from 'react-redux';
+import configureStore from './store/configureStore';
+import * as PageActions from './actions/modalMenuActions.js';
+import bindActionCreators from 'redux';
 
-    this.state={
-      showModalCounterparty:false,
-      showModalTransaction:false,
-    }
-  }
+class MenuModal extends Component{
+  // constructor(props){
+  //   super(props);
+
+  //   this.state={
+  //     showModalCounterparty:false,
+  //     showModalTransaction:false,
+  //   }
+  // }
   
   openModalCounterparty = () =>{
     this.setState({
@@ -42,7 +47,7 @@ class MenuModal extends Component{
           add transaction
         </Button>
 
-        <Modal show={this.state.showModalCounterparty} onHide={this.close}>
+        <Modal show={this.props.data.showModalCounterparty} onHide={this.close}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
@@ -51,7 +56,7 @@ class MenuModal extends Component{
           </Modal.Body>
         </Modal>
 
-        <Modal show={this.state.showModalTransaction} onHide={this.close}>
+        <Modal show={this.props.data.showModalTransaction} onHide={this.close}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
@@ -65,4 +70,17 @@ class MenuModal extends Component{
   }
 }
 
-export default MenuModal;
+function mapStateToProps(state){
+  return{
+    data:state
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    pageActions: bindActionCreators(pageActions, dispatch)
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuModal);

@@ -8,16 +8,17 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import todoApp from './reducers'
+import todoApp from './reducers';
 import App from './App.jsx';
+import configureStore from './store/configureStore';
 
-
+const store = configureStore();
 //let store = createStore(todoApp)
 
 ReactDOM.render(
-
-  <App />,
-
+  <Provider store={store} >
+    <App/>
+  </Provider>,
 	document.getElementById('root')
 );
 

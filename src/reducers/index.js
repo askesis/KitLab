@@ -1,49 +1,19 @@
-import { combineReducers } from 'redux'
-import {
-  ADD_TODO,
-  TOGGLE_TODO,
-  SET_VISIBILITY_FILTER,
-  VisibilityFilters
-} from './actions'
+import { setModalC, setModalT} from '../actions/modalMenuActions';
 
-const { SHOW_ALL } = VisibilityFilters
+const initialState = {
+  showModalCounterparty:false,
+  showModalTransaction:false,
+};
 
-function visibilityFilter(state = SHOW_ALL, action) {
-  switch (action.type) {
-    case SET_VISIBILITY_FILTER:
-      return action.filter
+export default function userstate(state = initialState, action) {
+   switch (action.type) {
+    case 'SET_SHOW_C':
+      return { ...state, showModalCounterparty: action.value }
+
+    case 'SET_SHOW_T':
+      return { ...state, showModalTransaction: action.value }
+
     default:
-      return state
+      return state;
   }
 }
-
-function todos(state = [], action) {
-  switch (action.type) {
-    case ADD_TODO:
-      return [
-        ...state,
-        {
-          text: action.text,
-          completed: false
-        }
-      ]
-    case TOGGLE_TODO:
-      return state.map((todo, index) => {
-        if (index === action.index) {
-          return Object.assign({}, todo, {
-            completed: !todo.completed
-          })
-        }
-        return todo
-      })
-    default:
-      return state
-  }
-}
-
-const todoApp = combineReducers({
-  visibilityFilter,
-  todos
-})
-
-export default todoApp
