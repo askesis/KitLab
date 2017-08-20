@@ -6,24 +6,46 @@ import FormAdd from './FormAdd';
 import { Panel, ButtonToolbar } from 'react-bootstrap';
 import Menu from './Menu';
 import CounterpartyTables from './Counterparty';
-
+import MenuModal from './MenuModal';
 
 class App extends Component{
+  constructor(props){
+    super(props);
+    
+    this.state = {
+      to: {
+        
+        counterparty:'/counterparty',
+        root:'/',
+        },
+      label: {
+        
+        countreparty:'Counterparty',
+        root:'Table',
+      }        
+    }
+  }
+
+
   render(){
+    const to = this.state.to;
+    const label = this.state.label;
+
     return(
       <BrowserRouter>
         <div>
             <ButtonToolbar>
               <Panel className={"Menu"}>
-                <Menu activeOnlyWhenExact={true} to="/" label="TablePlusFilters"/>
-                <Menu to="/form_add" label="FormAdd"/>
-                <Menu to="/counterparty" label="Counterparty"/>
+                <Menu activeOnlyWhenExact={true} to={to.root} label={label.root}/>
+                
+                <Menu to={to.counterparty} label={label.countreparty}/>
+                <MenuModal />
               </Panel>
             </ButtonToolbar>                                            {/* button show here*/}
 
-          <Route exact path="/" component={TablePlusFilters}/>
-          <Route path="/form_add" component={FormAdd}/>
-          <Route path="/counterparty" component={CounterpartyTables}/>
+          <Route exact path={to.root} component={TablePlusFilters}/>
+         
+          <Route path={to.counterparty} component={CounterpartyTables}/>
         </div>
       </BrowserRouter>
     )

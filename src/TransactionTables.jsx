@@ -5,8 +5,8 @@ class TransactionTables extends Component{
   render(){
     
       const template = this.props.finishedData.map( (item, index) => {
-        const { id, type, value, date } = item;
-        const counterpartId = item.counterpartId;
+        const { id, type, value, date, counterpartId } = item;
+        
         return(
           <tr key={index}>
             <td>{id}</td>

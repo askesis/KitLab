@@ -45,11 +45,6 @@ class FormAdd extends Component {
 
   render(){
     return(  
-      <Grid>
-        <Row>
-          <Col md={2}></Col>
-
-          <Col md={8}>
             <form onSubmit={this.handleInputSubmit}>
              <Panel>
               <input type="text" name="value" placeholder="value" value={this.state.value} onChange={this.handleInputChange.bind(this)}/>
@@ -62,13 +57,7 @@ class FormAdd extends Component {
             </Panel>
               <input type="submit"/>
             </form>
-          </Col>
 
-          <Col md={2}>
-          </Col>
-
-        </Row>
-      </Grid>
     )
   }
 }

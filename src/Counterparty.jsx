@@ -50,7 +50,7 @@ componentDidMount() {
         <Row>
           <Col xsHidden md={2} ></Col>
           <Col md={8}> 
-          <FormAddCounterparty />
+         
             <Table striped>
               <thead>
                 <tr>

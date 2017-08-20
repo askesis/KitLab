@@ -69,6 +69,13 @@
       "type": "consumption",
       "date": "20.07.2017",
       "counterpartId": 2
+    },
+    {
+      "id": 11,
+      "value": "",
+      "type": "",
+      "date": "",
+      "counterpartId": ""
     }
   ],
   "counterparty": [
@@ -87,6 +94,34 @@
     {
       "id": 4,
       "name": "last test"
+    },
+    {
+      "id": 5,
+      "name": ""
+    },
+    {
+      "id": 6,
+      "name": "sdsd"
+    },
+    {
+      "id": 7,
+      "name": "sd"
+    },
+    {
+      "id": 8,
+      "name": "sds"
+    },
+    {
+      "id": 9,
+      "name": "ewew"
+    },
+    {
+      "id": 10,
+      "name": ""
+    },
+    {
+      "id": 11,
+      "name": "ыв"
     }
   ]
 }
