@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Grid, Row, Col, Panel} from 'react-bootstrap';
+import {Panel} from 'react-bootstrap';
 
 import axios from 'axios';
 import {counterpartyAddress} from './config.js';

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter,  Route } from 'react-router-dom'
 import './App.css';
 import TablePlusFilters from './TablePlusFilters';
-import FormAdd from './FormAdd';
+
 import { Panel, ButtonToolbar } from 'react-bootstrap';
 import Menu from './Menu';
 import CounterpartyTables from './Counterparty';

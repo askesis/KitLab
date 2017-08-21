@@ -1,8 +1,8 @@
 import { createStore } from 'redux'
-import rootReducer from '../reducers'
+import setShowModal from '../reducers/index'
 
 export default function configureStore(initialState) {
-  const store = createStore(rootReducer, initialState)
+  const store = createStore(setShowModal, initialState)
 
   return store
 }

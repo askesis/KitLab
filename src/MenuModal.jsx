@@ -3,9 +3,9 @@ import {  Button, Modal } from 'react-bootstrap';
 import FormAddCounterparty from './FormAddCounterparty';
 import FormAdd from './FormAdd';
 import { connect } from 'react-redux';
-import configureStore from './store/configureStore';
-import * as PageActions from './actions/modalMenuActions.js';
-import bindActionCreators from 'redux';
+
+import * as Actions from './actions/modalMenuActions.js';
+
 
 class MenuModal extends Component{
   // constructor(props){
@@ -17,37 +17,52 @@ class MenuModal extends Component{
   //   }
   // }
   
-  openModalCounterparty = () =>{
-    this.setState({
-      showModalCounterparty:true,
-    })
-  }
+  // openModalCounterparty = () =>{
+  //   this.setState({
+  //     showModalCounterparty:true,
+  //   })
+  // }
 
-  openModalTransaction = () =>{
-    this.setState({
-      showModalTransaction:true,
-    })
-  }
+  // openModalTransaction = () =>{
+  //   this.setState({
+  //     showModalTransaction:true,
+  //   })
+  // }
 
-  close = () =>{
-    this.setState({
-      showModalCounterparty:false,
-      showModalTransaction:false,
-        })
-  }
+  // close = () =>{
+  //   this.setState({
+  //     showModalCounterparty:false,
+  //     showModalTransaction:false,
+  //       })
+  // }
 
+    handleShowC(){
+      console.log('1');
+      this.props.setModalC(true);
+    }
+
+    handleShowT(){
+      console.log('1/2');
+      this.props.setModalT(true);
+    }
+
+    close(){
+      this.props.setModalC(false);
+      this.props.setModalT(false);
+    }
+  
   render(){
 
     return(
       <div>
-        <Button onClick={this.openModalCounterparty}>
+        <Button onClick={this.handleShowC.bind(this)}>
           Add Counterparty
         </Button>
-        <Button onClick={this.openModalTransaction}>
+        <Button onClick={this.handleShowT.bind(this)}>
           add transaction
         </Button>
 
-        <Modal show={this.props.data.showModalCounterparty} onHide={this.close}>
+        <Modal show={this.props.showModalCounterparty} onHide={this.close.bind(this)}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
@@ -56,7 +71,7 @@ class MenuModal extends Component{
           </Modal.Body>
         </Modal>
 
-        <Modal show={this.props.data.showModalTransaction} onHide={this.close}>
+        <Modal show={this.props.showModalTransaction} onHide={this.close.bind(this)}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
@@ -70,17 +85,43 @@ class MenuModal extends Component{
   }
 }
 
-function mapStateToProps(state){
-  return{
-    data:state
-  }
-}
+// function mapStateToProps(state){
+//   console.log('2');
+//   return{
+//     data:state
+//   }
+// }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    pageActions: bindActionCreators(pageActions, dispatch)
-  }
-}
+// function mapDispatchToProps(dispatch) {
+//   console.log('3');
+//   return {
+//    onClick: () => {
+//      dispatch(Actions.setModalC(true))
+//    }
+//   }
+// }
 
+// function mapDispatchToProps(dispatch) {
+//   console.log('3');
+//   return {
+//     pageActions: bindActionCreators(Actions, dispatch)
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuModal);
+const something = connect(
+   state => ({
+     showModalCounterparty: state.showModalCounterparty,
+     showModalTransaction: state.showModalTransaction,
+    }),
+    {
+      setModalC: Actions.setModalC,
+      setModalT: Actions.setModalT,
+    } 
+  )(MenuModal)
+
+// const something = connect(
+//   mapStateToProps,
+//   mapDispatchToProps,
+// )(MenuModal)
+
+export default something;

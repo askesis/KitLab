@@ -1,16 +1,13 @@
-export function setModalC(value) {
-
-  return {
-    type: 'SET_SHOW_C',
+export const setModalC = value => ( //эта хрень принимает значение которое нужно установить
+  {
+    type: 'SET_SHOW_C', //согласно этому 
     show: value
   }
-}
+)
 
-export function setModalT(value) {
-
-  return {
+export const setModalT = value => (
+  {
     type: 'SET_SHOW_T',
     show: value
   }
-
-}
+)
