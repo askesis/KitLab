@@ -19,19 +19,19 @@ class TablePlusFilters extends Component {
   }
   
   componentDidMount() {
-    
     axios.get(transactionAddress)
-      .then( response => {
-        const data = response.data.map( (item, index) => {
-          return item;
-        })
-        this.setState({
-          initialData: data
-        }) 
+
+    .then( response => {
+      const data = response.data.map( (item, index) => {
+        return item;
       })
-      .catch( error => {
-        console.log(error);
-      });
+      this.setState({
+        initialData: data
+      }) 
+    })
+    .catch( error => {
+      console.log(error);
+    });
     
   }
 
@@ -75,28 +75,26 @@ class TablePlusFilters extends Component {
 
 	render(){
 		return(
-        <Grid>
-          <Row>
-            <Col  xsHidden md={2}></Col>
-            <Col md={8}>
-            
-              <TransactionFilters 
-                handleFilterClick={this.handleFilterClick} 
-                selectedFilters={this.state.selectedFilters}
-              />
+      <Grid>
+        <Row>
+          <Col  xsHidden md={2}></Col>
+          <Col md={8}>
+          
+            <TransactionFilters 
+              handleFilterClick={this.handleFilterClick} 
+              selectedFilters={this.state.selectedFilters}
+            />
 
-              <TransactionTables 
-                finishedData={this.filterTransactions(this.state.initialData, this.state.selectedFilters)}
-              />
+            <TransactionTables 
+              finishedData={this.filterTransactions(this.state.initialData, this.state.selectedFilters)}
+            />
 
-            </Col>
-            <Col xsHidden md={2}></Col>
-          </Row>
-        </Grid>
-	
+          </Col>
+          <Col xsHidden md={2}></Col>
+        </Row>
+      </Grid>
 		);
   }
-  
 }
 
 export default TablePlusFilters;

@@ -10,7 +10,6 @@ import App from './App.jsx';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
-//let store = createStore(todoApp)
 
 ReactDOM.render(
   <Provider store={store} >
@@ -20,11 +19,3 @@ ReactDOM.render(
 );
 
 registerServiceWorker();
-
-
- /*<BrowserRouter basename="/" >
-    <div>
-     <Route exact path="/" component={App}/>
-     <Route path="/form_add" component={FormAdd}/>
-    </div>
-  </BrowserRouter>, */

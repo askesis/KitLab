@@ -4,7 +4,7 @@ import './App.css';
 import TablePlusFilters from './TablePlusFilters';
 
 import { Panel, ButtonToolbar } from 'react-bootstrap';
-import Menu from './Menu';
+import MenuButton from './MenuButton';
 import CounterpartyTables from './Counterparty';
 import MenuModal from './MenuModal';
 
@@ -13,19 +13,16 @@ class App extends Component{
     super(props);
     
     this.state = {
-      to: {
-        
+      to: {   
         counterparty:'/counterparty',
         root:'/',
         },
       label: {
-        
         countreparty:'Counterparty',
         root:'Table',
       }        
     }
   }
-
 
   render(){
     const to = this.state.to;
@@ -36,21 +33,19 @@ class App extends Component{
         <div>
             <ButtonToolbar>
               <Panel className={"Menu"}>
-                <Menu activeOnlyWhenExact={true} to={to.root} label={label.root}/>
-                
-                <Menu to={to.counterparty} label={label.countreparty}/>
+                <MenuButton activeOnlyWhenExact={true} to={to.root} label={label.root}/>
+                <MenuButton to={to.counterparty} label={label.countreparty}/>
                 <MenuModal />
               </Panel>
             </ButtonToolbar>                                            {/* button show here*/}
 
           <Route exact path={to.root} component={TablePlusFilters}/>
-         
           <Route path={to.counterparty} component={CounterpartyTables}/>
+
         </div>
       </BrowserRouter>
     )
   }
- 
 }
 
 export default App;

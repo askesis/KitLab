@@ -5,8 +5,8 @@ const initialState = {
 
 export default function setShowModal(state = initialState, action) {
    switch (action.type) {
+    
     case 'SET_SHOW_C':
-      console.log(action.show);
       return { ...state, showModalCounterparty: action.show }
 
     case 'SET_SHOW_T':

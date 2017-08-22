@@ -8,57 +8,29 @@ import * as Actions from './actions/modalMenuActions.js';
 
 
 class MenuModal extends Component{
-  // constructor(props){
-  //   super(props);
 
-  //   this.state={
-  //     showModalCounterparty:false,
-  //     showModalTransaction:false,
-  //   }
-  // }
-  
-  // openModalCounterparty = () =>{
-  //   this.setState({
-  //     showModalCounterparty:true,
-  //   })
-  // }
+  handleShow = e =>{
+      if (e.target.value == 'counterparty') { 
+        this.props.setModalC(true)
+      } else if (e.target.value == 'transaction'){
+        this.props.setModalT(true)
+      }
+  } 
 
-  // openModalTransaction = () =>{
-  //   this.setState({
-  //     showModalTransaction:true,
-  //   })
-  // }
+  close(){
+    this.props.setModalC(false);
+    this.props.setModalT(false);
+  }
 
-  // close = () =>{
-  //   this.setState({
-  //     showModalCounterparty:false,
-  //     showModalTransaction:false,
-  //       })
-  // }
-
-    handleShowC(){
-      console.log('1');
-      this.props.setModalC(true);
-    }
-
-    handleShowT(){
-      console.log('1/2');
-      this.props.setModalT(true);
-    }
-
-    close(){
-      this.props.setModalC(false);
-      this.props.setModalT(false);
-    }
-  
   render(){
 
     return(
       <div>
-        <Button onClick={this.handleShowC.bind(this)}>
+
+        <Button value="counterparty" onClick={this.handleShow.bind(this)}>
           Add Counterparty
         </Button>
-        <Button onClick={this.handleShowT.bind(this)}>
+        <Button value="transaction" onClick={this.handleShow.bind(this)}>
           add transaction
         </Button>
 
@@ -85,29 +57,6 @@ class MenuModal extends Component{
   }
 }
 
-// function mapStateToProps(state){
-//   console.log('2');
-//   return{
-//     data:state
-//   }
-// }
-
-// function mapDispatchToProps(dispatch) {
-//   console.log('3');
-//   return {
-//    onClick: () => {
-//      dispatch(Actions.setModalC(true))
-//    }
-//   }
-// }
-
-// function mapDispatchToProps(dispatch) {
-//   console.log('3');
-//   return {
-//     pageActions: bindActionCreators(Actions, dispatch)
-//   }
-// }
-
 const something = connect(
    state => ({
      showModalCounterparty: state.showModalCounterparty,
@@ -118,10 +67,5 @@ const something = connect(
       setModalT: Actions.setModalT,
     } 
   )(MenuModal)
-
-// const something = connect(
-//   mapStateToProps,
-//   mapDispatchToProps,
-// )(MenuModal)
 
 export default something;

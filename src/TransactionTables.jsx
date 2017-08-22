@@ -18,8 +18,7 @@ class TransactionTables extends Component{
         )
       }
     )
-    
-  
+      
     return(
       <Table striped>
         <thead>

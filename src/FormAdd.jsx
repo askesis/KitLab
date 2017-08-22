@@ -21,7 +21,6 @@ class FormAdd extends Component {
     e.preventDefault();
     
     axios.post(transactionAddress, this.state)
-
     .then( response => {
       alert('the id of this transactions ' + response.data.id);
     })
@@ -45,18 +44,15 @@ class FormAdd extends Component {
 
   render(){
     return(  
-            <form onSubmit={this.handleInputSubmit}>
-             <Panel>
-              <input type="text" name="value" placeholder="value" value={this.state.value} onChange={this.handleInputChange.bind(this)}/>
-    
-              <input type="text" name="type" placeholder="type" value={this.state.type} onChange={this.handleInputChange.bind(this)}/>
-  
-              <input type="text" name="date" placeholder="data" value={this.state.date} onChange={this.handleInputChange.bind(this)}/>
-
-               <input type="text" name="counterpartId" placeholder="counterpartID" value={this.state.counterpartId} onChange={this.handleInputChange.bind(this)}/>
-            </Panel>
-              <input type="submit"/>
-            </form>
+      <form onSubmit={this.handleInputSubmit}>
+        <Panel>
+          <input type="text" name="value" placeholder="value" value={this.state.value} onChange={this.handleInputChange.bind(this)}/>
+          <input type="text" name="type" placeholder="type" value={this.state.type} onChange={this.handleInputChange.bind(this)}/>
+          <input type="text" name="date" placeholder="data" value={this.state.date} onChange={this.handleInputChange.bind(this)}/>
+          <input type="text" name="counterpartId" placeholder="counterpartID" value={this.state.counterpartId} onChange={this.handleInputChange.bind(this)}/>
+        </Panel>
+        <input type="submit"/>
+      </form>
 
     )
   }
