@@ -5,7 +5,7 @@ import FormAdd from './FormAdd';
 import { connect } from 'react-redux';
 
 import * as Actions from './actions/modalMenuActions.js';
-
+import ModalModal from './ModalModal';
 
 class MenuModal extends Component{
 
@@ -34,6 +34,10 @@ class MenuModal extends Component{
           add transaction
         </Button>
 
+        <ModalModal showModalTransaction={this.props.showModalTransaction} close={this.close.bind(this)}>{FormAdd}</ModalModal>
+        <ModalModal showModalTransaction={this.props.showModalCounterparty} close={this.close.bind(this)}>{FormAddCounterparty}</ModalModal>
+
+{/*
         <Modal show={this.props.showModalCounterparty} onHide={this.close.bind(this)}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
@@ -42,7 +46,7 @@ class MenuModal extends Component{
             <FormAddCounterparty/>
           </Modal.Body>
         </Modal>
-
+        
         <Modal show={this.props.showModalTransaction} onHide={this.close.bind(this)}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
@@ -51,7 +55,7 @@ class MenuModal extends Component{
             <FormAdd/>
           </Modal.Body>
         </Modal>
-
+*/}
       </div>
     )
   }
