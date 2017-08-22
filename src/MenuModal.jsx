@@ -36,26 +36,6 @@ class MenuModal extends Component{
 
         <ModalModal showModalTransaction={this.props.showModalTransaction} close={this.close.bind(this)}>{FormAdd}</ModalModal>
         <ModalModal showModalTransaction={this.props.showModalCounterparty} close={this.close.bind(this)}>{FormAddCounterparty}</ModalModal>
-
-{/*
-        <Modal show={this.props.showModalCounterparty} onHide={this.close.bind(this)}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <FormAddCounterparty/>
-          </Modal.Body>
-        </Modal>
-        
-        <Modal show={this.props.showModalTransaction} onHide={this.close.bind(this)}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <FormAdd/>
-          </Modal.Body>
-        </Modal>
-*/}
       </div>
     )
   }
