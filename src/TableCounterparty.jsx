@@ -3,7 +3,7 @@ import {Table, Grid, Row, Col} from 'react-bootstrap'
 import axios from 'axios';
 import {counterpartyAddress} from './config';
 
-class CounterpartyTables extends Component{ 
+class TableCounterparty extends Component{ 
   constructor(props) {
       super(props);
 
@@ -62,7 +62,7 @@ class CounterpartyTables extends Component{
   }
 }
 
-export default CounterpartyTables;
+export default TableCounterparty;
 
 
      

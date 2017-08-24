@@ -7,7 +7,7 @@ class ModalModal extends Component{
     return(
       <Modal show={this.props.showModalTransaction} onHide={this.props.close}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Заполните поля, пожалста!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
          <this.props.children/>

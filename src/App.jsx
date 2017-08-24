@@ -5,7 +5,7 @@ import TablePlusFilters from './TablePlusFilters';
 
 import { Panel, ButtonToolbar } from 'react-bootstrap';
 import MenuButton from './MenuButton';
-import CounterpartyTables from './Counterparty';
+import TableCounterparty from './TableCounterparty';
 import MenuModal from './MenuModal';
 
 class App extends Component{
@@ -40,7 +40,7 @@ class App extends Component{
             </ButtonToolbar>                                            {/* button show here*/}
 
           <Route exact path={to.root} component={TablePlusFilters}/>
-          <Route path={to.counterparty} component={CounterpartyTables}/>
+          <Route path={to.counterparty} component={TableCounterparty}/>
 
         </div>
       </BrowserRouter>

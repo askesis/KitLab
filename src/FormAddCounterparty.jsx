@@ -36,12 +36,12 @@ class FormAddCounterparty extends Component {
 
   render(){
     return(  
-      <Panel>
-        <form onSubmit={this.handleInputSubmit}>
-          <input type="text" name="name" placeholder="type" value={this.state.name} onChange={this.handleInputChange.bind(this)}/>
-          <input type="submit"/>
-        </form>
-      </Panel>
+      <form onSubmit={this.handleInputSubmit}>
+        <Panel>
+        <input type="text" name="name" placeholder="type" value={this.state.name} onChange={this.handleInputChange.bind(this)}/>
+        </Panel>
+        <input type="submit"/>
+      </form>
     )
   }
 }

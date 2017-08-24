@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {  Button, Modal } from 'react-bootstrap';
+import {  Button } from 'react-bootstrap';
 import FormAddCounterparty from './FormAddCounterparty';
 import FormAdd from './FormAdd';
 import { connect } from 'react-redux';
@@ -10,9 +10,9 @@ import ModalModal from './ModalModal';
 class MenuModal extends Component{
 
   handleShow = e =>{
-      if (e.target.value == 'counterparty') { 
+      if (e.target.value === 'counterparty') { 
         this.props.setModalC(true)
-      } else if (e.target.value == 'transaction'){
+      } else if (e.target.value === 'transaction'){
         this.props.setModalT(true)
       }
   } 
@@ -23,7 +23,6 @@ class MenuModal extends Component{
   }
 
   render(){
-
     return(
       <div>
 
