@@ -16,3 +16,8 @@ input {
 .Menu {
   background-color: cyan
 }
+
+.form-add-transaction-modal {
+  margin-top: 1px;
+  height:26px;
+}

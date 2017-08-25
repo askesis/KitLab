@@ -6,7 +6,7 @@ import TablePlusFilters from './TablePlusFilters';
 import { Panel, ButtonToolbar } from 'react-bootstrap';
 import MenuButton from './MenuButton';
 import TableCounterparty from './TableCounterparty';
-import MenuModal from './MenuModal';
+import MenuButtonModal from './modals/MenuButtonModal';
 
 class App extends Component{
   constructor(props){
@@ -35,7 +35,7 @@ class App extends Component{
               <Panel className={"Menu"}>
                 <MenuButton activeOnlyWhenExact={true} to={to.root} label={label.root}/>
                 <MenuButton to={to.counterparty} label={label.countreparty}/>
-                <MenuModal />
+                <MenuButtonModal />
               </Panel>
             </ButtonToolbar>                                            {/* button show here*/}
 

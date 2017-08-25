@@ -4,71 +4,78 @@
       "id": 1,
       "value": 1200,
       "type": "income",
-      "date": "22.06.2017",
+      "date": "2017-22-06",
       "counterpartId": 1
     },
     {
       "id": 2,
       "value": 900,
       "type": "consumption",
-      "date": "23.06.2017",
+      "date": "2017-23-06",
       "counterpartId": 1
     },
     {
       "id": 3,
       "value": 4500,
       "type": "income",
-      "date": "24.06.2017",
+      "date": "2017-24-06",
       "counterpartId": 2
     },
     {
       "id": 4,
       "value": 350,
       "type": "consumption",
-      "date": "25.06.2017",
+      "date": "2017-25-06",
       "counterpartId": 1
     },
     {
       "id": 5,
       "value": 500,
       "type": "income",
-      "date": "10.07.2017",
+      "date": "2017-10-07",
       "counterpartId": 3
     },
     {
       "id": 6,
       "value": 7890,
       "type": "consumption",
-      "date": "12.07.2017",
+      "date": "2017-12-07",
       "counterpartId": 4
     },
     {
       "id": 7,
       "value": 320,
-      "type": "income",
-      "date": "14.07.2017",
+      "type": "income", 
+      "date": "2017-14-07",
       "counterpartId": 2
     },
     {
       "id": 8,
       "value": 2150,
       "type": "consumption",
-      "date": "16.07.2017",
+      "date": "2017-16-07",
       "counterpartId": 4
     },
     {
       "id": 9,
       "value": 470,
       "type": "income",
-      "date": "18.07.2017",
+      "date": "2017-18-07.",
       "counterpartId": 4
     },
     {
       "id": 10,
       "value": 3240,
       "type": "consumption",
-      "date": "20.07.2017",
+      "date": "2017-07-20",
       "counterpartId": 2
+    },
+    {
+      "id": 11,
+      "value": "",
+      "type": "consumption",
+      "date": "2017-08-18",
+      "counterpartId": ""
     }
   ],
   "counterparty": [
@@ -83,14 +90,6 @@
     {
       "id": 3,
       "name": "test3"
-    },
-    {
-      "id": 4,
-      "name": "last test"
-    },
-    {
-      "id": 5,
-      "name": "sdsd"
     }
   ]
 }
