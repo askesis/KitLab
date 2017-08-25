@@ -13,12 +13,10 @@ class FormAdd extends Component {
       value:'',
       type:'consumption',
       date:'',
-      counterpartId:'',
+      counterpartId:'2',
       selectCounterpartId:[],
     };
-    
     this.handleInputChange = this.handleInputChange.bind(this);
-
   }
 
   componentDidMount(){
@@ -27,17 +25,13 @@ class FormAdd extends Component {
       const data = response.data.map( (item, index)=>{
         return item
       })
-     
-    this.setState({
-      selectCounterpartId: data,
+      this.setState({ selectCounterpartId: data, })
     })
-    
-    })
-    
   }
 
   handleInputSubmit = e =>{
-    axios.post(transactionAddress, this.state)
+    const data = this.state;
+    axios.post(transactionAddress, {date:data.date, counterpartId:data.counterpartId, id:data.id, value:data.value, type:data.type})
     .then( response => {
       alert('the id of this transactions ' + response.data.id);
     })
@@ -50,16 +44,14 @@ class FormAdd extends Component {
     this.setState({
       [e.target.name]:e.target.value,
     })
-    
   }
-  //<input type="text" name="counterpartId" placeholder="counterpartID" value={this.state.counterpartId} onChange={this.handleInputChange}/> ;
-
+  
   render(){
     const template =  this.state.selectCounterpartId.map( (item, index)=>{
       return(
         <option key={index} value={item.id}>{item.name}</option>
       )
-   })
+    })
     return(  
       <form onSubmit={this.handleInputSubmit}>
         <Panel>

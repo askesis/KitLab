@@ -37,7 +37,7 @@ class App extends Component{
                 <MenuButton to={to.counterparty} label={label.countreparty}/>
                 <MenuButtonModal />
               </Panel>
-            </ButtonToolbar>                                            {/* button show here*/}
+            </ButtonToolbar>                                           
 
           <Route exact path={to.root} component={TablePlusFilters}/>
           <Route path={to.counterparty} component={TableCounterparty}/>
