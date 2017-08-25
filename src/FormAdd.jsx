@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Panel, FormControl, FormGroup, ControlLabel} from 'react-bootstrap';
+import { Panel} from 'react-bootstrap';
 
 import axios from 'axios';
-import {transactionAddress} from './config.js';
+import {transactionAddress, counterpartyAddress} from './config.js';
 
 class FormAdd extends Component {
   constructor(props) { //это вот состояния
@@ -14,10 +14,26 @@ class FormAdd extends Component {
       type:'consumption',
       date:'',
       counterpartId:'',
+      selectCounterpartId:[],
     };
     
     this.handleInputChange = this.handleInputChange.bind(this);
 
+  }
+
+  componentDidMount(){
+    axios.get(counterpartyAddress)
+    .then( response => {
+      const data = response.data.map( (item, index)=>{
+        return item
+      })
+     
+    this.setState({
+      selectCounterpartId: data,
+    })
+    
+    })
+    
   }
 
   handleInputSubmit = e =>{
@@ -34,11 +50,16 @@ class FormAdd extends Component {
     this.setState({
       [e.target.name]:e.target.value,
     })
-    console.log(this.state)
+    
   }
+  //<input type="text" name="counterpartId" placeholder="counterpartID" value={this.state.counterpartId} onChange={this.handleInputChange}/> ;
 
   render(){
-    const template =  <input type="text" name="counterpartId" placeholder="counterpartID" value={this.state.counterpartId} onChange={this.handleInputChange}/> ;
+    const template =  this.state.selectCounterpartId.map( (item, index)=>{
+      return(
+        <option key={index} value={item.id}>{item.name}</option>
+      )
+   })
     return(  
       <form onSubmit={this.handleInputSubmit}>
         <Panel>
@@ -50,7 +71,11 @@ class FormAdd extends Component {
           </select>   
           
           <input className="form-add-transaction-modal" type="date" name="date" placeholder="data" value={this.state.date} onChange={this.handleInputChange}/>
-          {template}
+         
+          <select className="form-add-transaction-modal" name="counterpartId" value={this.state.counterpartId} onChange={this.handleInputChange}>
+            {template}
+          </select>
+
         </Panel>
         <input type="submit"/>
       </form>

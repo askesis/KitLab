@@ -45,7 +45,7 @@
     {
       "id": 7,
       "value": 320,
-      "type": "income", 
+      "type": "income",
       "date": "2017-14-07",
       "counterpartId": 2
     },
@@ -76,6 +76,27 @@
       "type": "consumption",
       "date": "2017-08-18",
       "counterpartId": ""
+    },
+    {
+      "id": 12,
+      "value": "ds",
+      "type": "consumption",
+      "date": "2017-08-09",
+      "counterpartId": "2",
+      "selectCounterpartId": [
+        {
+          "id": 1,
+          "name": "test"
+        },
+        {
+          "id": 2,
+          "name": "test2"
+        },
+        {
+          "id": 3,
+          "name": "test3"
+        }
+      ]
     }
   ],
   "counterparty": [
